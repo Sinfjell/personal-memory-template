@@ -2,7 +2,7 @@
 
 A starter scaffold for keeping a persistent, structured knowledge base that LLMs (Claude Code, ChatGPT, Cursor — anything that can read files) can use as long-term memory.
 
-Inspired by [Andrej Karpathy's "LLM Wiki" gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The accompanying writeup is at [productivitytech.io/claude-code-memory-system](https://productivitytech.io/claude-code-memory-system/).
+Inspired by [Andrej Karpathy's "LLM Wiki" gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
 ## The idea
 
