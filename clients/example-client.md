@@ -1,8 +1,11 @@
-# Example Client — Client Memory
+---
+owner: you
+type: client
+last_updated: 2026-10-22
+last_verified: 2026-10-22
+---
 
-**Owner:** You
-**Last updated:** 2026-05-07
-**Last verified:** 2026-05-07
+# Example Client
 
 > This is a worked example. Delete this file when starting your own knowledge base, or replace its contents with a real client.
 
@@ -24,6 +27,21 @@
 | SSH | | SSH alias: `htz_example` |
 | DNS | Cloudflare | 1Password: `Example: Cloudflare` |
 
+## Agreement and invoicing
+
+| What | Value |
+|------|-------|
+| Agreement | Hosting + support, signed 2024-08-01 |
+| Price | 1 200 per month — the accounting system is the source of truth |
+| Invoice | Quarterly in advance, to invoice@example.com, PO number required |
+
+## Reading map
+
+| Task | Read | Skill |
+|------|------|-------|
+| Invoicing | Agreement section above | `invoice-client` |
+| Deploy | Deploy routine below | |
+
 ## Deploy routine
 
 ```bash
@@ -38,8 +56,12 @@ ssh htz_example 'wp --path=/var/www/example.com plugin activate example-plugin'
 
 ## Notes
 
-- Migrated from SiteGround to Hetzner in 2024-08. Old site backups in `~/backups/example-2024-08/`.
+- Old site backups from the move to Hetzner are in `~/backups/example-2024-08/`.
 - Client prefers email over Slack. Don't ping for non-urgent issues.
+
+## Changelog
+
+- 2024-08-01 — migrated from SiteGround to Hetzner
 
 ## See also
 

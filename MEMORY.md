@@ -1,33 +1,44 @@
-# Routing Index (load first)
+# Routing index (read first)
 
-> This is the routing document — not a content dump. Max ~200 lines.
-> Start here, navigate to the right file based on the task.
+> Links and one line each. Budget: 150 lines, rows ≤ 150 chars (`scripts/lint.py` checks).
+> A section past ~30 lines moves to `<folder>/INDEX.md` and leaves one pointer row here.
 
-## How to use
-
-When the LLM is working in another repo and needs context about *you* — your clients, decisions, conventions, systems — it should read this file first, then follow the link to the relevant detail file. Keep entries to one line.
-
-## Companies / orgs
+## Rules
 
 | Question | Document |
 |----------|----------|
-| What is [Your Company]? Role, stack, systems | [`companies/your-company.md`](companies/your-company.md) |
+| How do I read and write this repo? | [`AGENTS.md`](AGENTS.md) |
+| Review routine and what we don't do | [`ORG.md`](ORG.md) |
+
+## Companies
+
+| Question | Document |
+|----------|----------|
+| What is Acme Studio? Role, stack, systems | [`companies/your-company.md`](companies/your-company.md) |
 
 ## Clients
 
 | Question | Document |
 |----------|----------|
-| Example client — hosting, contacts, quirks | [`clients/example-client.md`](clients/example-client.md) |
+| Example Client — entry file with reading map | [`clients/example-client.md`](clients/example-client.md) |
+| New client? Copy the entry template (and the folder when it grows) | [`clients/_TEMPLATE.md`](clients/_TEMPLATE.md) |
 
 ## Engineering
 
 | Question | Document |
 |----------|----------|
-| What's the architecture? | [`engineering/architecture.md`](engineering/architecture.md) |
+| Have we seen this bug before? (index by topic) | [`engineering/debugging/INDEX.md`](engineering/debugging/INDEX.md) |
 | Established pattern for X? | [`engineering/patterns.md`](engineering/patterns.md) |
-| Have we seen this bug before? | [`engineering/debugging.md`](engineering/debugging.md) |
 
-## Playbooks (step-by-step procedures)
+## Skills
+
+| Question | Document |
+|----------|----------|
+| Distil finished work into the knowledge base | [`skills/ingest/SKILL.md`](skills/ingest/SKILL.md) |
+| Invoice a client from its agreement | [`skills/invoice-client/SKILL.md`](skills/invoice-client/SKILL.md) |
+| What changed in the skills? | [`CHANGELOG.md`](CHANGELOG.md) |
+
+## Playbooks
 
 | Question | Document |
 |----------|----------|
@@ -41,7 +52,7 @@ When the LLM is working in another repo and needs context about *you* — your c
 | What can I share with the LLM? | [`policies/ai-use.md`](policies/ai-use.md) |
 | How do we handle secrets? | [`policies/security.md`](policies/security.md) |
 
-## Home / personal
+## Home
 
 | Question | Document |
 |----------|----------|
@@ -51,10 +62,8 @@ When the LLM is working in another repo and needs context about *you* — your c
 
 | Question | Document |
 |----------|----------|
-| (none yet — distill into clients/engineering when finished) | — |
+| (none yet — distil into a topic file and archive when finished) | — |
 
-## Conventions
+## Log
 
-- Org rules and review routine: [`ORG.md`](ORG.md)
-- Append-only changelog: [`log.md`](log.md)
-- LLM instructions: [`CLAUDE.md`](CLAUDE.md)
+- This month's changes: [`log.md`](log.md) · older months: `archive/log/`

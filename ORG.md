@@ -1,42 +1,28 @@
-# Operating Rules
+# Operating rules
 
-> Keep this short. Max 5 min read. Details belong in the underlying files.
-
-## How we work
-
-- Every document has a named owner who keeps it current
-- Updates happen via the `/ingest` skill (after projects) or `/capture` (mid-conversation), or by manual edit
-- "Sist oppdatert" / "Last updated" date is bumped on every meaningful change
-- "Sist verifisert" / "Last verified" date is bumped when we re-read a file and confirm it's still correct
+> Max 5 minutes to read. The rules for agents live in [`AGENTS.md`](AGENTS.md); this file is the human routine.
 
 ## What we don't do
 
-- Don't delete information without explicit instruction — archive instead
-- Don't duplicate operational state from your task tracker (Notion / Linear / Jira) — link to it
-- Don't put secrets in this repo — use a password manager
+- Delete information without being asked. Archive instead.
+- Copy live state (tasks, status, contacts) from the task tracker. Link to it.
+- Store secrets or binaries. Password manager for secrets, a drive for files.
+- State the same rule in two files. One place, one link.
 
-## Review routine
+## Monthly review (first Monday)
 
-### Monthly review (1st Monday of the month)
+1. **Lint:** `python3 scripts/lint.py`. Fix every error, then the warnings worth fixing.
+2. **Rotate the log:** move last month's lines from `log.md` to `archive/log/YYYY-MM.md`.
+3. **Clients:** new clients without a file? Finished ones to archive? Entry files over 120 lines → folder.
+4. **Projects:** finished ones → distil lessons into topic files, move the folder to `archive/`.
+5. **Verify:** re-read the files lint flags as stale and bump `last_verified`, or fix them.
 
-1. **Clients** — Are files up to date? New clients missing a file? Closed clients to archive?
-2. **Playbooks** — Have workflows changed? New processes worth documenting?
-3. **Engineering** — New patterns, debugging lessons, infra changes?
-4. **Policies** — Anything outdated?
-5. **Verification** — Run `/wiki-lint` (or manually scan) and update "Last verified" on files that are still correct.
-6. **Log trim** — If `log.md` has > 200 entries, drop the oldest.
+## After a larger piece of work (ingest)
 
-### After larger projects (ingest)
-
-1. Update the client file with lessons learned, new systems, changed stack
-2. Add reusable patterns to `engineering/patterns.md`
-3. Add hard-to-debug issues to `engineering/debugging.md`
-4. Update `MEMORY.md` if new files were added
+1. Update the client file and the topic files the work touched — the right file, not a catch-all.
+2. Add a debugging entry to the matching `engineering/debugging/<topic>.md`, if a bug took more than an hour.
+3. Add one line to `log.md`. Add the new files to `MEMORY.md` or the folder's `INDEX.md`.
 
 ## Archive
 
-`archive/` holds conversation artifacts (screenshots, prototypes, drafts) that aren't compiled knowledge but might have value later.
-
-- LLMs **ignore** `archive/` unless explicitly asked to look there
-- Organize in subfolders by project/context
-- Don't list archive files in `MEMORY.md`
+`archive/` holds old logs, finished projects and drafts. Agents ignore it unless asked. Never list it in `MEMORY.md`.
