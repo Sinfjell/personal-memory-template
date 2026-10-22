@@ -48,8 +48,20 @@ or 25 KB of an auto-memory index, and long rule files lower adherence.
 | `playbooks/` | Step-by-step procedures |
 | `policies/` | Security, access, AI use |
 | `home/` | Private: housing, finance, health |
+| `skills/` | Procedures, one folder per skill, versioned (see Skills) |
 | `projects/` | Time-bound work. When it ends, distil the lessons into a topic file and move it to `archive/` |
 | `archive/` | Ignored by default |
+
+## Skills (procedures)
+
+Skills in `skills/<name>/SKILL.md` hold *how* to do a recurring task; the topic files hold the *facts*.
+
+- **Facts live in files, steps live in skills.** A client file never copies a skill's steps; a skill never
+  hardcodes client facts — it reads the client file.
+- **Point by name, not version.** Reading maps name the skill (`invoice-client`); the version lives in
+  the skill's second line and in `.claude-plugin/plugin.json`.
+- **Version every change.** Bump the skill's version line and add an `[Unreleased]` entry in
+  `CHANGELOG.md`. The repo is a Claude Code plugin; install it with `/plugin` to use the skills elsewhere.
 
 ## Knowledge base vs task tracker
 

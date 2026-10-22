@@ -39,12 +39,15 @@ Current state only. Dated events go to <slug>/changelog.md (or a "Changelog" sec
 <!-- Add this section when the client gets a folder (copy clients/_TEMPLATE/ to clients/<slug>/).
 Point to the ONE file to read for each kind of task. -->
 
-| Task | Read |
-|------|------|
-| Changing code or structure | [`<slug>/architecture.md`](_TEMPLATE/architecture.md) |
-| Deploy, hosting, backups | [`<slug>/operations.md`](_TEMPLATE/operations.md) |
-| Something behaves oddly | [`<slug>/quirks.md`](_TEMPLATE/quirks.md) |
-| What happened when | [`<slug>/changelog.md`](_TEMPLATE/changelog.md) |
+| Task | Read | Skill |
+|------|------|-------|
+| Invoicing | Agreement section above | `invoice-client` |
+| Changing code or structure | [`<slug>/architecture.md`](_TEMPLATE/architecture.md) | |
+| Deploy, hosting, backups | [`<slug>/operations.md`](_TEMPLATE/operations.md) | |
+| Something behaves oddly | [`<slug>/quirks.md`](_TEMPLATE/quirks.md) | |
+| What happened when | [`<slug>/changelog.md`](_TEMPLATE/changelog.md) | |
+
+<!-- Skill column: the skill's name only (no version). scripts/lint.py checks that it exists in skills/. -->
 
 ## Known quirks
 

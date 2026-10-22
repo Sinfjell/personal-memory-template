@@ -24,8 +24,11 @@ Why it works: humans abandon wikis because of maintenance overhead. LLMs do the 
 
 | Variant | For | Where |
 |---------|-----|-------|
-| **Simple** (Norwegian) | Non-coders who want Claude to answer questions about customers, e.g. invoicing rules. Claude Project or Notion, no git | [`enkel/`](enkel/README.md) |
-| **Full** | Claude Code / Codex / Cursor users who want a git repo as long-term memory across all their work | this repo root |
+| **Full** | Claude Code / Codex / Cursor users who want a git repo as long-term memory across all their work, with versioned skills | this repo root |
+| **Simple** (Norwegian) | Non-coders who want Claude to answer questions about customers, e.g. invoicing rules. Claude Project or Notion, no git; one uploadable skill | [`enkel/`](enkel/README.md) |
+
+Both variants split **facts** (files: one per client) from **procedures** (skills). A client file points to
+the skill by name; the skill reads the client file. Neither copies the other.
 
 ## Structure (full variant)
 
@@ -35,6 +38,9 @@ personal-memory/
 ├── AGENTS.md          ← the one rules file (CLAUDE.md just imports it)
 ├── ORG.md             ← human review routine
 ├── log.md             ← this month's changes; older months in archive/log/
+├── CHANGELOG.md       ← skill changes (Keep a Changelog + SemVer)
+├── .claude-plugin/    ← makes the repo a Claude Code plugin
+├── skills/            ← procedures: ingest, invoice-client (versioned)
 ├── clients/           ← entry file per client + a folder when it grows
 │   ├── _TEMPLATE.md
 │   └── _TEMPLATE/     ← architecture · operations · quirks · changelog
@@ -86,6 +92,10 @@ The first version of this template grew to ~800 files in daily use. What broke, 
 - `/ingest` — after a finished piece of work: update the right topic files, one line in `log.md`.
 - `/capture` — mid-conversation "save this": find the right file and write it there.
 - `/lint` — run `scripts/lint.py`, then ask the agent to check contradictions the script can't see.
+
+`ingest` and an example domain skill (`invoice-client`) ship in `skills/`. The lint script checks that every
+skill has a matching name and a version line, that every skill a reading map names exists, and that the
+plugin version has a changelog section.
 
 Inspired by [Andrej Karpathy's "LLM Wiki"](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and
 the [Claude Code memory docs](https://code.claude.com/docs/en/memory).

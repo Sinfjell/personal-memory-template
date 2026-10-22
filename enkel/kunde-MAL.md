@@ -18,6 +18,12 @@
 | Merkes med | [PO-nummer, prosjektnummer, referanse] |
 | Spesielt | [f.eks. ingen faktura i juli, samlefaktura med søsterselskap] |
 
+## Slik jobber vi med kunden
+
+| Oppgave | Skill |
+|---------|-------|
+| Fakturagrunnlag | `fakturering` |
+
 ## Ting å vite
 
 <!-- Det som overrasker: «de betaler alltid sent i desember», «faktura må godkjennes av X først». -->

@@ -29,6 +29,18 @@ filen på nytt. I Notion skriver Claude rett i sidene, og alle ser samme versjon
 2. Koble Notion til Claude under *Connectors* i innstillingene, og gi tilgang til «Kunnskapsbank».
 3. Lim inn `prosjektinstruks.md` i et Claude Project, og bytt «filene» med «Notion-siden Kunnskapsbank».
 
+## Skills: fremgangsmåter Claude kan gjenbruke
+
+Kundefilene holder fakta. En *skill* holder fremgangsmåten, for eksempel hvordan et fakturagrunnlag lages.
+Da trenger du ikke forklare stegene hver gang, og alle kunder behandles likt.
+
+1. Pakk mappen [`skills/fakturering/`](skills/fakturering/SKILL.md) som en zip-fil.
+2. Last den opp under *Skills* i Claude-innstillingene (krever betalt plan med Skills slått på).
+3. Spør «lag fakturagrunnlag for Acme». Claude bruker skillen og leser kundefila.
+
+Endrer du skillen: øk versjonen øverst i fila, skriv én linje under «Endringer», og last opp på nytt.
+Kundefila peker til skillen med navn (`fakturering`), ikke versjon, så den trenger ikke endres.
+
 ## Bruk
 
 - **Spør med kundenavn:** «Hvordan fakturerer vi Acme, og hvem sender vi til?»

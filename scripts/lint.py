@@ -104,6 +104,66 @@ def check_binaries(root, report):
             report("WARN", name, f"{path.stat().st_size // 1_000_000} MB binary in git: move to a drive and link it")
 
 
+VERSION_LINE_RE = re.compile(r"^_(?:Version|Versjon) \d+(?:\.\d+){1,2}\b")
+SKILL_CELL_RE = re.compile(r"`([a-z0-9][a-z0-9:-]*)`")
+
+
+def skill_sets(root):
+    """Map each skills/ folder (repo root and enkel/) to the skill names it defines."""
+    sets = {}
+    for skills_dir in [root / "skills", root / "enkel" / "skills"]:
+        if skills_dir.is_dir():
+            sets[skills_dir] = {p.parent.name for p in skills_dir.glob("*/SKILL.md")}
+    return sets
+
+
+def check_skill_files(root, report):
+    for skill in sorted(root.glob("skills/*/SKILL.md")) + sorted(root.glob("enkel/skills/*/SKILL.md")):
+        rel = skill.relative_to(root)
+        lines = skill.read_text(encoding="utf-8").splitlines()
+        if not lines or lines[0] != "---" or "---" not in lines[1:]:
+            report("ERROR", str(rel), "missing frontmatter (name + description)")
+            continue
+        end = lines.index("---", 1)
+        front = dict(line.split(":", 1) for line in lines[1:end] if ":" in line)
+        if front.get("name", "").strip() != skill.parent.name:
+            report("ERROR", str(rel), f"name must match the folder name '{skill.parent.name}'")
+        if len(front.get("description", "").strip()) > 1024:
+            report("ERROR", str(rel), "description is over 1024 characters")
+        if not any(VERSION_LINE_RE.match(line) for line in lines[end + 1:end + 3]):
+            report("WARN", str(rel), "no version line after the frontmatter (e.g. `_Version 0.1.0 · …_`)")
+
+
+def check_skill_refs(root, files, report):
+    """Every name in a 'Skill' table column must exist in the nearest skills/ folder."""
+    sets = skill_sets(root)
+    for path in files:
+        rel = path.relative_to(root)
+        local = sets.get(root / "enkel" / "skills") if rel.parts[0] == "enkel" else sets.get(root / "skills")
+        column = None
+        for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            cells = [c.strip() for c in line.strip().strip("|").split("|")] if line.lstrip().startswith("|") else []
+            if not cells:
+                column = None
+            elif column is None:
+                column = next((i for i, c in enumerate(cells) if c.lower() == "skill"), None)
+            elif column < len(cells) and not set(cells[column]) <= set("-: "):
+                for name in SKILL_CELL_RE.findall(cells[column]):
+                    if ":" not in name and name not in (local or set()):
+                        report("ERROR", f"{rel}:{n}", f"skill '{name}' not found in skills/")
+
+
+def check_changelog(root, report):
+    manifest = root / ".claude-plugin" / "plugin.json"
+    changelog = root / "CHANGELOG.md"
+    if not manifest.exists():
+        return
+    match = re.search(r'"version"\s*:\s*"([^"]+)"', manifest.read_text(encoding="utf-8"))
+    text = changelog.read_text(encoding="utf-8") if changelog.exists() else ""
+    if match and f"## [{match.group(1)}]" not in text:
+        report("WARN", "CHANGELOG.md", f"plugin version {match.group(1)} has no changelog section")
+
+
 def main():
     root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     findings = []
@@ -117,6 +177,9 @@ def main():
     check_files(root, files, linked, report)
     check_log(root, report)
     check_binaries(root, report)
+    check_skill_files(root, report)
+    check_skill_refs(root, files, report)
+    check_changelog(root, report)
 
     for level, where, message in sorted(findings):
         print(f"{level:5} {where}: {message}")

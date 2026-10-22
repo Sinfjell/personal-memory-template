@@ -10,4 +10,5 @@ Slik jobber du:
 4. Står det noe motstridende, eller er «Sist sjekket» eldre enn 6 måneder, si fra.
 5. Når jeg skriver «husk …»: vis den oppdaterte delen av riktig kundefil, klar til å lime inn, og oppdater
    «Sist oppdatert». Ny kunde: lag en ny fil etter `kunde-MAL.md` og en ny linje til indeksen.
-6. Svar kort og på norsk.
+6. Står det en skill i kundefila for oppgaven (f.eks. `fakturering`), følg den.
+7. Svar kort og på norsk.

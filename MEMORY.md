@@ -30,6 +30,14 @@
 | Have we seen this bug before? (index by topic) | [`engineering/debugging/INDEX.md`](engineering/debugging/INDEX.md) |
 | Established pattern for X? | [`engineering/patterns.md`](engineering/patterns.md) |
 
+## Skills
+
+| Question | Document |
+|----------|----------|
+| Distil finished work into the knowledge base | [`skills/ingest/SKILL.md`](skills/ingest/SKILL.md) |
+| Invoice a client from its agreement | [`skills/invoice-client/SKILL.md`](skills/invoice-client/SKILL.md) |
+| What changed in the skills? | [`CHANGELOG.md`](CHANGELOG.md) |
+
 ## Playbooks
 
 | Question | Document |

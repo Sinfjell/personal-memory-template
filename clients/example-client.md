@@ -35,6 +35,13 @@ last_verified: 2026-10-22
 | Price | 1 200 per month — the accounting system is the source of truth |
 | Invoice | Quarterly in advance, to invoice@example.com, PO number required |
 
+## Reading map
+
+| Task | Read | Skill |
+|------|------|-------|
+| Invoicing | Agreement section above | `invoice-client` |
+| Deploy | Deploy routine below | |
+
 ## Deploy routine
 
 ```bash
