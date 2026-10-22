@@ -40,7 +40,7 @@ personal-memory/
 ├── log.md             ← this month's changes; older months in archive/log/
 ├── CHANGELOG.md       ← skill changes (Keep a Changelog + SemVer)
 ├── .claude-plugin/    ← plugin.json: the skills' version (one number for the set)
-├── skills/            ← procedures: ingest, invoice-client (versioned)
+├── skills/            ← procedures: setup, ingest, invoice-client (versioned)
 ├── clients/           ← entry file per client + a folder when it grows
 │   ├── _TEMPLATE.md
 │   └── _TEMPLATE/     ← architecture · operations · quirks · changelog
@@ -61,7 +61,8 @@ personal-memory/
 
 2. **Open Claude Code in the folder** (`cd ~/repositories/personal-memory && claude`). The skills in `skills/`
    work there right away (`.claude/skills` points to them).
-3. **Add your first client:** "Create a client file for Acme from `clients/_TEMPLATE.md`: …" and paste what you know.
+3. **Run `/setup`.** It checks the repo is private, interviews you (clients, invoicing, systems, recurring
+   tasks) one question at a time, then creates the client and company files, the index and your first skills.
 4. **Work as usual. When something is done, run `/ingest`.** It writes what was learned into the right files,
    updates the index and the log, and runs the lint script.
 5. **Use it from your other repos:** add this to your global `~/.claude/CLAUDE.md`:

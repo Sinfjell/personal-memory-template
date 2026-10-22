@@ -17,6 +17,8 @@ filen på nytt. I Notion skriver Claude rett i sidene, og alle ser samme versjon
 
 1. Opprett et prosjekt, f.eks. «Fakturering».
 2. Lim inn teksten fra [`prosjektinstruks.md`](prosjektinstruks.md) under *Instructions*.
+   **Raskest:** last opp skillen [`skills/oppstart/`](skills/oppstart/SKILL.md) (se «Skills» under) og skriv
+   «kom i gang». Den intervjuer deg og lager filene i steg 3–5 for deg.
 3. Kopier [`kunde-MAL.md`](kunde-MAL.md) én gang per kunde. Gi filen et tydelig navn: `kunde-acme.md`.
 4. Fyll inn [`regler-fakturering.md`](regler-fakturering.md) med det som gjelder alle kunder.
 5. Fyll inn [`00-indeks.md`](00-indeks.md) med én linje per kunde.
@@ -34,7 +36,8 @@ filen på nytt. I Notion skriver Claude rett i sidene, og alle ser samme versjon
 Kundefilene holder fakta. En *skill* holder fremgangsmåten, for eksempel hvordan et fakturagrunnlag lages.
 Da trenger du ikke forklare stegene hver gang, og alle kunder behandles likt.
 
-1. Pakk mappen [`skills/fakturering/`](skills/fakturering/SKILL.md) som en zip-fil.
+1. Pakk mappen [`skills/fakturering/`](skills/fakturering/SKILL.md) (og [`skills/oppstart/`](skills/oppstart/SKILL.md))
+   som zip-filer, én per skill.
 2. Last den opp under *Skills* i Claude-innstillingene (krever betalt plan med Skills slått på).
 3. Spør «lag fakturagrunnlag for Acme». Claude bruker skillen og leser kundefila.
 

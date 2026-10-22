@@ -9,6 +9,12 @@ Collect entries under `[Unreleased]`; cut a version when you link the skills som
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-22
+
+### Added
+- `setup` — interviews the user and fills the templates, index and first skills.
+- `enkel/skills/oppstart` — the same interview for the simple variant; outputs ready files.
+
 ## [0.1.0] - 2026-10-22
 
 ### Added

@@ -12,6 +12,7 @@ Current state only. Dated events go to <slug>/changelog.md (or a "Changelog" sec
 
 ## Overview
 
+- **Buys:** [website and hosting / licences / hours / project]
 - **Website:** https://example.com
 - **Primary contact:** [Name], [role] — details live in the CRM / task tracker
 - **Stack / hosting:** [WordPress on Hetzner / Next.js on Vercel / …]
@@ -36,8 +37,8 @@ Current state only. Dated events go to <slug>/changelog.md (or a "Changelog" sec
 
 ## Reading map
 
-<!-- Add this section when the client gets a folder (copy clients/_TEMPLATE/ to clients/<slug>/).
-Point to the ONE file to read for each kind of task. -->
+<!-- One row per kind of task: the ONE place to read, and the skill to use. Keep only rows that point at
+something that exists; add the <slug>/ rows when the client gets a folder (copy clients/_TEMPLATE/). -->
 
 | Task | Read | Skill |
 |------|------|-------|

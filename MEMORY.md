@@ -34,6 +34,7 @@
 
 | Question | Document |
 |----------|----------|
+| Empty knowledge base? Interview and set it up | [`skills/setup/SKILL.md`](skills/setup/SKILL.md) |
 | Distil finished work into the knowledge base | [`skills/ingest/SKILL.md`](skills/ingest/SKILL.md) |
 | Invoice a client from its agreement | [`skills/invoice-client/SKILL.md`](skills/invoice-client/SKILL.md) |
 | What changed in the skills? | [`CHANGELOG.md`](CHANGELOG.md) |
