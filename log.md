@@ -7,4 +7,4 @@
 
 ## 2026-10
 
-- 2026-10-22 — updated — template v2 — two variants, size limits, lint script
+- 2026-10-22 — updated — template v2 — two variants, skills, size limits, lint script

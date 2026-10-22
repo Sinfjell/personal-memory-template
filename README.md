@@ -51,19 +51,30 @@ personal-memory/
 └── archive/           ← ignored by agents
 ```
 
-## Bootstrap
+## Start in five minutes
 
-1. **Use this template** on GitHub (or clone, `rm -rf .git && git init`). **Make it private.**
-2. **Replace the example files.** The structure matters more than the seed content.
-3. **Point your agent at it** from your global `CLAUDE.md` / `AGENTS.md`:
+1. **Clone it** (or "Use this template" on GitHub) and **make your copy private**: it will hold client data.
+
+   ```bash
+   git clone https://github.com/Sinfjell/personal-memory-template.git ~/repositories/personal-memory
+   ```
+
+2. **Open Claude Code in the folder** (`cd ~/repositories/personal-memory && claude`). The skills in `skills/`
+   work there right away (`.claude/skills` points to them).
+3. **Add your first client:** "Create a client file for Acme from `clients/_TEMPLATE.md`: …" and paste what you know.
+4. **Work as usual. When something is done, run `/ingest`.** It writes what was learned into the right files,
+   updates the index and the log, and runs the lint script.
+5. **Use it from your other repos:** add this to your global `~/.claude/CLAUDE.md`:
 
    ```
    My knowledge base lives at ~/repositories/personal-memory/. Start with its MEMORY.md.
    If I mention a client by name, read clients/<name>.md without being asked.
    ```
 
-4. **Use it.** When the agent gives a good answer, say "save this" and name the file.
-5. **Lint monthly:** `python3 scripts/lint.py`.
+   To get `/ingest` and the other skills everywhere, install the repo as a plugin:
+   `/plugin marketplace add ~/repositories/personal-memory`, then `/plugin install memory@memory`.
+
+6. **Once a month:** `python3 scripts/lint.py` and fix what it finds.
 
 ## Lessons from running this for six months
 
