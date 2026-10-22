@@ -1,4 +1,4 @@
-# Changelog — current month
+# Log — current month
 
 > One line per change, newest first. At the start of each month, move last month's lines to
 > `archive/log/YYYY-MM.md`. Nothing reads an old log; git history has the rest.

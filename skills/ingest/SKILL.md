@@ -11,6 +11,9 @@ Turn finished work into knowledge the next session can use. The rules for where 
 
 ## Steps
 
+0. **Find the knowledge base.** If the current folder has `MEMORY.md` and `AGENTS.md`, it is the knowledge base.
+   Otherwise use the path named in the global `~/.claude/CLAUDE.md` (default `~/repositories/personal-memory`).
+   All paths below are relative to that folder; run commands there (`cd` or `git -C`).
 1. **List what was learned.** Only things useful *next time*: decisions, quirks, how something actually
    works. Skip task status and meeting notes — those stay in the task tracker.
 2. **Pick the file for each item.** Client fact → the client's entry file or folder. Bug that took
@@ -20,7 +23,7 @@ Turn finished work into knowledge the next session can use. The rules for where 
    `changelog.md`.
 4. **Update stamps and indexes.** Bump `last_updated` (and `last_verified` where you checked).
    New file → add it to `MEMORY.md` or the folder's `INDEX.md`. Add one line to `log.md`.
-5. **Run `python3 scripts/lint.py`.** Fix every error before you finish.
+5. **Run `python3 scripts/lint.py <knowledge-base path>`.** Fix every error before you finish.
 6. **Report** the files you changed, one line each.
 
 ## Do not

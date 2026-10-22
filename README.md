@@ -39,7 +39,7 @@ personal-memory/
 ├── ORG.md             ← human review routine
 ├── log.md             ← this month's changes; older months in archive/log/
 ├── CHANGELOG.md       ← skill changes (Keep a Changelog + SemVer)
-├── .claude-plugin/    ← makes the repo a Claude Code plugin
+├── .claude-plugin/    ← plugin.json: the skills' version (one number for the set)
 ├── skills/            ← procedures: ingest, invoice-client (versioned)
 ├── clients/           ← entry file per client + a folder when it grows
 │   ├── _TEMPLATE.md
@@ -71,8 +71,14 @@ personal-memory/
    If I mention a client by name, read clients/<name>.md without being asked.
    ```
 
-   To get `/ingest` and the other skills everywhere, install the repo as a plugin:
-   `/plugin marketplace add ~/repositories/personal-memory`, then `/plugin install memory@memory`.
+   To get `/ingest` in every repo, link the skill into your user skills (the skill finds the knowledge base
+   through the line above):
+
+   ```bash
+   mkdir -p ~/.claude/skills && ln -s ~/repositories/personal-memory/skills/ingest ~/.claude/skills/ingest
+   ```
+
+   Don't install the whole repo as a plugin: that copies your private client files into the plugin cache.
 
 6. **Once a month:** `python3 scripts/lint.py` and fix what it finds.
 

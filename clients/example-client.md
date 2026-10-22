@@ -56,8 +56,12 @@ ssh htz_example 'wp --path=/var/www/example.com plugin activate example-plugin'
 
 ## Notes
 
-- Migrated from SiteGround to Hetzner in 2024-08. Old site backups in `~/backups/example-2024-08/`.
+- Old site backups from the move to Hetzner are in `~/backups/example-2024-08/`.
 - Client prefers email over Slack. Don't ping for non-urgent issues.
+
+## Changelog
+
+- 2024-08-01 — migrated from SiteGround to Hetzner
 
 ## See also
 

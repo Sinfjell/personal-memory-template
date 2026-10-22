@@ -16,7 +16,7 @@ This repo is long-term memory: the compiled, curated layer above raw conversatio
 ## Writing
 
 - **One topic per file, never one file per date.** Current state goes in the topic file. Dated events go in a
-  changelog (`clients/<slug>/changelog.md`, or `log.md` for the repo).
+  client's changelog (`clients/<slug>/changelog.md`, or its entry file's Changelog section).
 - **Write into the right topic file.** Do not append to a catch-all. If no file fits, create one and add it
   to the index.
 - **Never delete information** without explicit instruction. Move it to `archive/` instead.
@@ -44,7 +44,7 @@ or 25 KB of an auto-memory index, and long rule files lower adherence.
 |--------|-------|
 | `clients/` | One entry file per client (`_TEMPLATE.md`); a folder per client when it grows (`_TEMPLATE/`) |
 | `companies/` | Your own companies: strategy, finances, decisions |
-| `engineering/` | Patterns and debugging, one file per topic, indexed in `engineering/debugging/INDEX.md` |
+| `engineering/` | `patterns.md` and `debugging/` (one file per topic, listed in `debugging/INDEX.md`) |
 | `playbooks/` | Step-by-step procedures |
 | `policies/` | Security, access, AI use |
 | `home/` | Private: housing, finance, health |
@@ -61,7 +61,8 @@ Skills in `skills/<name>/SKILL.md` hold *how* to do a recurring task; the topic 
 - **Point by name, not version.** Reading maps name the skill (`invoice-client`); the version lives in
   the skill's second line and in `.claude-plugin/plugin.json`.
 - **Version every change.** Bump the skill's version line and add an `[Unreleased]` entry in
-  `CHANGELOG.md`. The repo is a Claude Code plugin; install it with `/plugin` to use the skills elsewhere.
+  `CHANGELOG.md`. `.claude/skills` points to `skills/`, so they work in this repo; link single skills into
+  `~/.claude/skills/` to use them elsewhere (never install the whole repo as a plugin: it holds private data).
 
 ## Knowledge base vs task tracker
 

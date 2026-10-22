@@ -53,6 +53,11 @@ Point to the ONE file to read for each kind of task. -->
 
 <!-- While the client has no folder: short bullets here. Move to <slug>/quirks.md when this passes ~20 lines. -->
 
+## Changelog
+
+<!-- Newest first, one line per event, until the client gets a folder; then move these to <slug>/changelog.md. -->
+- YYYY-MM-DD — [what happened] — [ticket/link]
+
 ## See also
 
 - [Deploy playbook](../playbooks/deploy.md)

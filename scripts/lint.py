@@ -43,6 +43,13 @@ def check_index(root, report):
             report("WARN", f"MEMORY.md:{n}", "index points into archive/")
 
 
+def is_placeholder(target):
+    """External URLs and template placeholders like <slug>, URL or … are not checked."""
+    if re.match(r"^[a-z]+:", target) or target.isupper() or target == "url":
+        return True
+    return "<" in target or "…" in target
+
+
 def check_links(root, files, report):
     linked = set()
     for path in files:
@@ -53,7 +60,7 @@ def check_links(root, files, report):
             if in_code:
                 continue
             for target in LINK_RE.findall(line.replace("`", "")):
-                if re.match(r"^[a-z]+:", target) or target.isupper() or target == "url" or "<" in target or "…" in target:
+                if is_placeholder(target):
                     continue
                 resolved = (path.parent / pathlib.Path(target).expanduser()).resolve()
                 linked.add(resolved)
@@ -69,13 +76,18 @@ def check_files(root, files, linked, report):
         text = path.read_text(encoding="utf-8")
         size = len(text.encode("utf-8"))
         if size > FILE_MAX_BYTES and rel.name != "log.md":
-            report("WARN", str(rel), f"{size // 1000} KB > {FILE_MAX_BYTES // 1000} KB: split into a folder with INDEX.md")
+            limit = FILE_MAX_BYTES // 1000
+            report("WARN", str(rel), f"{size // 1000} KB > {limit} KB: split into a folder with INDEX.md")
         is_entry = rel.parts[0] == "clients" and len(rel.parts) == 2 and not rel.name.startswith("_")
         if is_entry and text.count("\n") > ENTRY_MAX_LINES:
             report("WARN", str(rel), f"entry file > {ENTRY_MAX_LINES} lines: create clients/<slug>/ and a reading map")
         match = DATE_RE.search(text)
-        if match and "YYYY" not in match.group(1):
-            age = (today - datetime.date.fromisoformat(match.group(1))).days
+        if match:
+            try:
+                age = (today - datetime.date.fromisoformat(match.group(1))).days
+            except ValueError:
+                report("ERROR", str(rel), f"last_verified '{match.group(1)}' is not a valid date")
+                continue
             if age > STALE_DAYS:
                 report("WARN", str(rel), f"last_verified {age} days ago: re-read and confirm or fix")
         in_content = rel.parts[0] in CONTENT_DIRS
