@@ -7,4 +7,5 @@
 
 ## 2026-10
 
+- 2026-10-22 — created — setup skill (both variants)
 - 2026-10-22 — updated — template v2 — two variants, skills, size limits, lint script
