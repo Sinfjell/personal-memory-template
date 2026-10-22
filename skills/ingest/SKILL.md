@@ -20,7 +20,7 @@ Turn finished work into knowledge the next session can use. The rules for where 
    more than an hour → `engineering/debugging/<topic>.md`. Procedure → a playbook or a skill. Never a
    catch-all file.
 3. **Write current state, not history.** Replace outdated text. Dated events go to the client's
-   `changelog.md`.
+   `changelog.md`, or the entry file's `## Changelog` section if the client has no folder yet.
 4. **Update stamps and indexes.** Bump `last_updated` (and `last_verified` where you checked).
    New file → add it to `MEMORY.md` or the folder's `INDEX.md`. Add one line to `log.md`.
 5. **Run `python3 scripts/lint.py <knowledge-base path>`.** Fix every error before you finish.

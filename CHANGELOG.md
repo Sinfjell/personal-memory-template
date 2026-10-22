@@ -5,7 +5,7 @@ versions: [SemVer](https://semver.org/). One plugin version for the whole set; e
 own version on its second line.
 
 Bump rules: new skill or new behaviour → MINOR · fix or wording → PATCH · removed or renamed skill → MAJOR.
-Collect entries under `[Unreleased]`; cut a version when you install the plugin somewhere new.
+Collect entries under `[Unreleased]`; cut a version when you link the skills somewhere new or share them.
 
 ## [Unreleased]
 

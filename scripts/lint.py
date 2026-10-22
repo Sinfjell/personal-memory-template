@@ -87,7 +87,7 @@ def check_files(root, files, linked, report):
                 age = (today - datetime.date.fromisoformat(match.group(1))).days
             except ValueError:
                 report("ERROR", str(rel), f"last_verified '{match.group(1)}' is not a valid date")
-                continue
+                age = 0
             if age > STALE_DAYS:
                 report("WARN", str(rel), f"last_verified {age} days ago: re-read and confirm or fix")
         in_content = rel.parts[0] in CONTENT_DIRS

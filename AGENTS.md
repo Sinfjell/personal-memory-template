@@ -62,7 +62,8 @@ Skills in `skills/<name>/SKILL.md` hold *how* to do a recurring task; the topic 
   the skill's second line and in `.claude-plugin/plugin.json`.
 - **Version every change.** Bump the skill's version line and add an `[Unreleased]` entry in
   `CHANGELOG.md`. `.claude/skills` points to `skills/`, so they work in this repo; link single skills into
-  `~/.claude/skills/` to use them elsewhere (never install the whole repo as a plugin: it holds private data).
+  `~/.claude/skills/` to use them elsewhere (never install the whole repo as a plugin: it holds private data;
+  `.claude-plugin/plugin.json` only holds the version number).
 
 ## Knowledge base vs task tracker
 

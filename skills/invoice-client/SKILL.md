@@ -11,6 +11,7 @@ If the two disagree, the client file wins — and say so.
 
 ## Steps
 
+0. **Find the knowledge base** the same way as `ingest` step 0, and read files relative to it.
 1. **Find the client.** Read `MEMORY.md`, then `clients/<slug>.md`. No file → stop and say so.
 2. **Read the agreement section** (`## Agreement and invoicing`). Note price, interval, recipient and
    special rules. A `last_verified` older than ~4 months → warn that the price may be stale.
