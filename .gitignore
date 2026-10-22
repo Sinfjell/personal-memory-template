@@ -3,5 +3,19 @@
 .env.*
 *.log
 node_modules/
+venv/
+.venv/
 .idea/
 .vscode/
+
+# A knowledge base holds text. Screenshots, PDFs, photos and build tools go to a drive;
+# link them from the markdown file. Binaries bloat git history permanently.
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.pdf
+*.zip
+*.phar
+*.mp4
+*.mov

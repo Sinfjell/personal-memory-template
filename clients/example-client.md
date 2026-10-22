@@ -1,8 +1,11 @@
-# Example Client — Client Memory
+---
+owner: you
+type: client
+last_updated: 2026-10-22
+last_verified: 2026-10-22
+---
 
-**Owner:** You
-**Last updated:** 2026-05-07
-**Last verified:** 2026-05-07
+# Example Client
 
 > This is a worked example. Delete this file when starting your own knowledge base, or replace its contents with a real client.
 
@@ -23,6 +26,14 @@
 | Hosting panel | https://plesk.example.host | 1Password: `Example: Plesk` |
 | SSH | | SSH alias: `htz_example` |
 | DNS | Cloudflare | 1Password: `Example: Cloudflare` |
+
+## Agreement and invoicing
+
+| What | Value |
+|------|-------|
+| Agreement | Hosting + support, signed 2024-08-01 |
+| Price | 1 200 per month — the accounting system is the source of truth |
+| Invoice | Quarterly in advance, to invoice@example.com, PO number required |
 
 ## Deploy routine
 

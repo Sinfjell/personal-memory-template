@@ -20,55 +20,75 @@ Three operations:
 
 Why it works: humans abandon wikis because of maintenance overhead. LLMs do the repetitive upkeep (cross-links, deduplication, freshness checks) cheaply, so the knowledge base stays current.
 
-## Structure
+## Two variants
+
+| Variant | For | Where |
+|---------|-----|-------|
+| **Simple** (Norwegian) | Non-coders who want Claude to answer questions about customers, e.g. invoicing rules. Claude Project or Notion, no git | [`enkel/`](enkel/README.md) |
+| **Full** | Claude Code / Codex / Cursor users who want a git repo as long-term memory across all their work | this repo root |
+
+## Structure (full variant)
 
 ```
 personal-memory/
-├── MEMORY.md          ← routing index, read first
-├── ORG.md             ← conventions and review routine
-├── CLAUDE.md          ← instructions for the LLM working here
-├── log.md             ← append-only changelog
-├── clients/           ← one file per client (template: _TEMPLATE.md)
-├── companies/         ← your own companies, strategy, finances
-├── engineering/       ← patterns, debugging, repo registry
-├── playbooks/         ← step-by-step procedures
-├── policies/          ← AI use, security, access
-├── home/              ← private (housing, finance, training, car)
-├── projects/          ← time-bound incidents/events
-└── archive/           ← LLM ignores this — old artifacts
+├── MEMORY.md          ← routing index, read first (≤150 lines)
+├── AGENTS.md          ← the one rules file (CLAUDE.md just imports it)
+├── ORG.md             ← human review routine
+├── log.md             ← this month's changes; older months in archive/log/
+├── clients/           ← entry file per client + a folder when it grows
+│   ├── _TEMPLATE.md
+│   └── _TEMPLATE/     ← architecture · operations · quirks · changelog
+├── companies/         ← your own companies
+├── engineering/       ← patterns + debugging/ (one file per topic, INDEX.md)
+├── playbooks/  policies/  home/  projects/
+├── scripts/lint.py    ← health check, standard library only
+└── archive/           ← ignored by agents
 ```
 
 ## Bootstrap
 
-1. **Click "Use this template"** on GitHub (or `git clone` and `rm -rf .git && git init`).
-2. **Make it private** — this will hold personal data.
-3. **Edit the example files** (or delete them and start blank). The structure matters more than the seed content.
-4. **Tell your LLM about it.** Add a section to your global `CLAUDE.md` (or equivalent):
+1. **Use this template** on GitHub (or clone, `rm -rf .git && git init`). **Make it private.**
+2. **Replace the example files.** The structure matters more than the seed content.
+3. **Point your agent at it** from your global `CLAUDE.md` / `AGENTS.md`:
 
    ```
-   My personal knowledge base lives at ~/repositories/personal-memory/.
-   Always start by reading MEMORY.md. If I mention a client by name,
-   read clients/<name>.md without being asked.
+   My knowledge base lives at ~/repositories/personal-memory/. Start with its MEMORY.md.
+   If I mention a client by name, read clients/<name>.md without being asked.
    ```
 
-5. **Use it.** Next time the LLM gives you a good answer, say "save this" — point it at the right file.
+4. **Use it.** When the agent gives a good answer, say "save this" and name the file.
+5. **Lint monthly:** `python3 scripts/lint.py`.
+
+## Lessons from running this for six months
+
+The first version of this template grew to ~800 files in daily use. What broke, and the rule that now prevents it:
+
+| What broke | Rule |
+|------------|------|
+| The index grew to 300 lines of prose rows, and agents stopped reading all of it | `MEMORY.md` ≤ 150 lines, rows ≤ 150 chars, sub-indexes per folder |
+| Claude Code loads only the first 200 lines / 25 KB of its auto-memory index, so the newest notes vanished silently | Keep auto-memory small; promote durable facts into this repo |
+| A copied rules file for a second tool drifted until it said the opposite | One `AGENTS.md`; `CLAUDE.md` contains only `@AGENTS.md` |
+| "Add bugs to debugging.md" produced a 327 KB file nobody could search | One file per topic plus an index; split anything over 40 KB |
+| Client files became diaries: 46 dated sections above the facts | Entry file = current state, ≤ 120 lines; dated events go to `changelog.md` |
+| An append-only log reached 1 MB and nothing ever read it | Keep the current month; archive the rest |
+| Screenshots and PDFs made the git history 3x the content | Binaries in `.gitignore`; link to a drive |
+| The weekly lint stopped and nobody noticed for 3 months | A lint script anyone can run, and a monthly review that starts with it |
 
 ## What makes the difference
 
-- **Routing index with a strict line budget.** `MEMORY.md` should fit in one screen — links only, one sentence per file. Without this, the index becomes a dump that doesn't help.
-- **One file per topic, never per date.** Date-organized notes are useless as LLM context. Topic-organized are gold.
-- **Write for future-you.** If it would help you read this in 6 months, it's good LLM context too.
-- **Don't duplicate your task tracker.** Operational state (tasks, deadlines, current status) belongs in Notion/Linear/Jira. This repo is *compiled* knowledge — quirks, decisions, how-things-actually-work.
+- **One file per topic, never per date.** Topic files are context; date files are noise.
+- **The index routes, the files explain.** If an index row needs a second sentence, it belongs in the file.
+- **Don't duplicate your task tracker.** Live state (tasks, deadlines, status) belongs in Notion/Linear/Jira.
+- **Write for future-you.** If it would help you in six months, it is good context for the agent too.
 
-## Maintenance — three skills worth building
+## Maintenance skills worth building
 
-If you use Claude Code, three custom skills (slash commands) keep this alive without effort:
+- `/ingest` — after a finished piece of work: update the right topic files, one line in `log.md`.
+- `/capture` — mid-conversation "save this": find the right file and write it there.
+- `/lint` — run `scripts/lint.py`, then ask the agent to check contradictions the script can't see.
 
-- `/ingest` — after a finished project: distill what was learned into the right file, update `MEMORY.md`, log to `log.md`.
-- `/capture` — mid-conversation: "save this" → finds the right file and appends.
-- `/wiki-lint` — auditing: stale dates, broken links, orphan files, contradictions.
-
-You don't need these to start. Just open the markdown file and edit it manually. Add automation when the manual part starts feeling tedious.
+Inspired by [Andrej Karpathy's "LLM Wiki"](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and
+the [Claude Code memory docs](https://code.claude.com/docs/en/memory).
 
 ## License
 

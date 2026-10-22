@@ -1,43 +1,55 @@
-# [Client Name] — Client Memory
+---
+owner: you              # who keeps this file current
+type: client
+last_updated: YYYY-MM-DD
+last_verified: YYYY-MM-DD
+---
 
-**Owner:** [You]
-**Last updated:** [YYYY-MM-DD]
-**Last verified:** [YYYY-MM-DD]
+# [Client name]
+
+<!-- Entry file. Max 120 lines: who they are, how to get in, the agreement, and where to read next.
+Current state only. Dated events go to <slug>/changelog.md (or a "Changelog" section while small). -->
 
 ## Overview
 
 - **Website:** https://example.com
-- **Primary contact:** [Name] — [email]
-- **Hosting:** [Kinsta / Hetzner / Vercel / other]
-- **SSH alias:** `[alias]` / n/a
-- **CMS / stack:** [WordPress / Next.js / other]
-- **Repos:** `~/repositories/<repo-name>`
-- **Task tracker entity:** [link or ID] / n/a
+- **Primary contact:** [Name], [role] — details live in the CRM / task tracker
+- **Stack / hosting:** [WordPress on Hetzner / Next.js on Vercel / …]
+- **Repos:** `~/repositories/<repo>`
+- **Task tracker:** [link]
 
-## Systems and access
+## Agreement and invoicing
+
+| What | Value |
+|------|-------|
+| Agreement | [SLA / hosting / hourly], signed YYYY-MM-DD, [link to the signed copy] |
+| Price | [amount] per [month / year / hour] — the accounting system is the source of truth |
+| Invoice | [monthly in advance / quarterly / on delivery], sent to [invoice email / EHF] |
+| Special rules | [e.g. PO number required, no invoice in July] |
+
+## Access
 
 | System | URL / host | Access via |
 |--------|-----------|-----------|
-| Admin panel | https://example.com/admin | 1Password: `[item-name]` |
-| Hosting panel | | 1Password: `[item-name]` |
-| SSH | | SSH alias: `[alias]` |
-| DNS | | 1Password: `[item-name]` |
+| Admin | https://example.com/admin | Password manager: `[item name]` |
+| Hosting | | Password manager: `[item name]` |
 
-## Deploy routine
+## Reading map
 
-```bash
-# Example:
-rsync -avz --delete ./plugin/ alias:/path/to/wp-content/plugins/plugin/ --exclude='.git'
-```
+<!-- Add this section when the client gets a folder (copy clients/_TEMPLATE/ to clients/<slug>/).
+Point to the ONE file to read for each kind of task. -->
+
+| Task | Read |
+|------|------|
+| Changing code or structure | [`<slug>/architecture.md`](_TEMPLATE/architecture.md) |
+| Deploy, hosting, backups | [`<slug>/operations.md`](_TEMPLATE/operations.md) |
+| Something behaves oddly | [`<slug>/quirks.md`](_TEMPLATE/quirks.md) |
+| What happened when | [`<slug>/changelog.md`](_TEMPLATE/changelog.md) |
 
 ## Known quirks
 
-<!-- Bugs, workarounds, race conditions, cache problems, etc. -->
-
-## Notes
-
-<!-- History, decisions, special considerations -->
+<!-- While the client has no folder: short bullets here. Move to <slug>/quirks.md when this passes ~20 lines. -->
 
 ## See also
 
-- [Related file 1](../engineering/patterns.md)
+- [Deploy playbook](../playbooks/deploy.md)
